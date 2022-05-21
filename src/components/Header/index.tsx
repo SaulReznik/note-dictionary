@@ -1,8 +1,12 @@
+import useStyles from './styles';
+
 const Header = () => {
+  const classes = useStyles();
+
   return (
-    <div>
-      Header
+    <div className={classes.headerContainer}>
       <input placeholder="Search..." />
+      <button onClick={() => console.log('bruh man')}>Add Item</button>
     </div>
   )
 };

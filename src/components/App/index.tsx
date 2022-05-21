@@ -1,4 +1,5 @@
 import Header from 'components/Header';
+import List from 'components/List';
 import useStyles from './styles';
 
 const App = () => {
@@ -7,6 +8,7 @@ const App = () => {
   return (
     <div className={classes.App}>
       <Header />
+      <List />
     </div>
   );
 }
