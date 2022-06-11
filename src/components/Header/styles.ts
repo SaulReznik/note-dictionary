@@ -7,6 +7,10 @@ const useStyles = createUseStyles({
         display: 'flex',
         justifyContent: 'space-around',
         backgroundColor: '#166BC6',
+    },
+    inputsContainer: {
+        display: 'flex',
+        flexDirection: 'column',
     }
 });
 

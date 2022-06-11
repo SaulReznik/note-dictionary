@@ -1,11 +1,22 @@
 import useStyles from "components/List/styles";
+import { IListItem } from "types";
 
-const List = () => {
+interface IList {
+    list: IListItem[],
+}
+
+const List = ({ list }: IList) => {
     const classes = useStyles();
 
     return (
         <div className={classes.listContainer}>
-            List
+            {
+                list.map((item, index) => (
+                    <div>
+                        <span>{item.title}</span> - <span>{item.description}</span>
+                    </div>
+                ))
+            }
         </div>
     )
 };

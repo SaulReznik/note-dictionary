@@ -1,12 +1,29 @@
+import { ChangeEventHandler, useCallback, useState } from 'react';
+import { IListItem } from 'types';
 import useStyles from './styles';
 
-const Header = () => {
+interface IHeader {
+  handleModalToggle: () => void;
+}
+
+const Header = ({ handleModalToggle }: IHeader) => {
+  const [searchItem, setSearchItem] = useState('');
   const classes = useStyles();
+
+  const searchItemHandler: ChangeEventHandler<HTMLInputElement> = useCallback((e) => {
+    setSearchItem(e.target.value);
+  }, []);
 
   return (
     <div className={classes.headerContainer}>
-      <input placeholder="Search..." />
-      <button onClick={() => console.log('bruh man')}>Add Item</button>
+      <div className={classes.inputsContainer}>
+        <input
+          value={searchItem}
+          onChange={searchItemHandler}
+          placeholder="Search..."
+        />
+      </div>
+      <button onClick={handleModalToggle}>Add Item</button>
     </div>
   )
 };
