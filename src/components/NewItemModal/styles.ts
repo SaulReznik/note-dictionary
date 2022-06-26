@@ -12,9 +12,20 @@ const useStyles = createUseStyles({
         backgroundColor: '#00000080'
     },
     newItemModal: {
-        height: 200,
-        width: 200,
+        position: 'absolute',
+        display: 'flex',
+        justifyContent: 'center',
+        alignItems: 'center',
+        backgroundColor: 'white',
+        borderRadius: 20,
+        height: 500,
+        width: 750,
         zIndex: 14,
+    },
+    newItemModalCloseButton: {
+        position: 'absolute',
+        top: 10,
+        right: 10,
     },
     inputsContainer: {
         display: 'flex',

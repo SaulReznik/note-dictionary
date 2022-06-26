@@ -20,7 +20,7 @@ const App = () => {
       <Header handleModalToggle={handleNewItemModalToggle} />
       <List list={list} />
       {
-        isNewItemModalOpen ? <NewItemModal /> : null
+        isNewItemModalOpen ? <NewItemModal handleModalToggle={handleNewItemModalToggle} /> : null
       }
     </div>
   );

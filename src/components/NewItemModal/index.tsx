@@ -1,27 +1,27 @@
-import { ChangeEventHandler, useCallback, useState } from 'react';
+import { ChangeEventHandler, MouseEventHandler, useCallback, useState } from 'react';
 import useStyles from './styles';
 
-const NewItemModal = () => {
+interface INewItemModal {
+    handleModalToggle: () => void;
+}
+
+const NewItemModal = ({ handleModalToggle }: INewItemModal) => {
     const [title, setTitle] = useState('');
     const [description, setDescription] = useState('');
     const classes = useStyles();
   
-    const titleHandler: ChangeEventHandler<HTMLInputElement> = useCallback((e) => {
-      setTitle(e.target.value);
-    }, []);
-  
-    const descriptionHandler: ChangeEventHandler<HTMLTextAreaElement> = useCallback(e => {
-      setDescription(e.target.value);
-    }, []);
+    const titleHandler: ChangeEventHandler<HTMLInputElement> = useCallback(e => setTitle(e.target.value), []);
+    const descriptionHandler: ChangeEventHandler<HTMLTextAreaElement> = useCallback(e => setDescription(e.target.value), []);
 
     return (
-        <div className={classes.newItemModalWrapper}>
-            <div className={classes.newItemModal}>
+        <div onClick={handleModalToggle} className={classes.newItemModalWrapper}>
+            <div onClick={e => e.stopPropagation()} className={classes.newItemModal}>
+                <button onClick={handleModalToggle} className={classes.newItemModalCloseButton}>Close</button>
                 <div className={classes.inputsContainer}>
                     <input
                         value={title}
                         onChange={titleHandler}
-                        placeholder="Search..."
+                        placeholder="Title..."
                     />
                     <textarea
                         value={description}
