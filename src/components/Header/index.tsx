@@ -1,5 +1,4 @@
 import { ChangeEventHandler, useCallback, useState } from 'react';
-import { IListItem } from 'types';
 import useStyles from './styles';
 
 interface IHeader {
