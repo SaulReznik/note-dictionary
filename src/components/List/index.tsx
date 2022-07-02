@@ -1,17 +1,16 @@
+import { useContext } from "react";
+
 import useStyles from "components/List/styles";
-import { IListItem } from "types";
+import { DictionaryContext } from "context/dictionary";
 
-interface IList {
-    list: IListItem[],
-}
-
-const List = ({ list }: IList) => {
+const List = () => {
+    const { dictionary } = useContext(DictionaryContext);
     const classes = useStyles();
 
     return (
         <div className={classes.listContainer}>
             {
-                list.map((item, index) => (
+                dictionary.map((item, index) => (
                     <div>
                         <span>{item.title}</span> - <span>{item.description}</span>
                     </div>
