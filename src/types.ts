@@ -15,4 +15,4 @@ export interface IDictionaryProvider {
 export interface IDictionaryContext {
     dictionary: IDictionaryItem[];
     dictionaryDispatch: ({type, payload}: IDictionaryContextAction) => void;
-  }
+}
