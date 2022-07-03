@@ -1,7 +1,8 @@
-import { useContext } from "react";
+import { memo, useContext } from "react";
 
 import useStyles from "components/List/styles";
 import { DictionaryContext } from "context/dictionary";
+import ListItem from "./ListItem";
 
 const List = () => {
     const { dictionary } = useContext(DictionaryContext);
@@ -10,14 +11,14 @@ const List = () => {
     return (
         <div className={classes.listContainer}>
             {
-                dictionary.map((item, index) => (
-                    <div>
-                        <span>{item.title}</span> - <span>{item.description}</span>
-                    </div>
+                Object.values(dictionary).map((item, index) => (
+                    <ListItem
+                        item={item} 
+                    />
                 ))
             }
         </div>
     )
 };
 
-export default List;
+export default memo(List);

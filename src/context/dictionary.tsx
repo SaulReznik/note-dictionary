@@ -1,13 +1,18 @@
 import React, { useReducer, Reducer } from 'react';
 
-import { IDictionaryItem, IDictionaryContextAction, IDictionaryProvider, IDictionaryContext } from 'types';
+import { IDictionaryContextAction, IDictionaryProvider, IDictionaryContext, IDictionary } from 'types';
 
-const initialState: IDictionaryItem[] = [];
+const initialState: IDictionary = {};
 
-const reducer: Reducer<IDictionaryItem[], IDictionaryContextAction> = (state, action) => {
+// TODO: Refactor during the redux swith
+const reducer: Reducer<IDictionary, IDictionaryContextAction> = (state, action) => {
     switch(action.type){
         case 'ADD_ITEM':
-            return [ ...state, action.payload ];
+        case 'EDIT_ITEM':
+            return { ...state, [action.payload.id]: action.payload };
+        case 'DELETE_ITEM':
+            delete state[action.payload.id];
+            return { ...state }
         default:
             return state;
     }

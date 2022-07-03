@@ -3,23 +3,23 @@ import { useCallback, useState } from 'react';
 import Header from 'components/Header';
 import List from 'components/List';
 import useStyles from './styles';
-import NewItemModal from 'components/NewItemModal';
+import DictionaryItemModal from 'components/DictionaryItemModal';
 import DictionaryProvider from 'context/dictionary';
 
 const App = () => {
-  const [isNewItemModalOpen, setIsNewItemModalOpen] = useState(false);
+  const [isDictionaryItemModalOpen, setIsDictionaryItemModalOpen] = useState(false);
 
   const classes = useStyles();
 
-  const handleNewItemModalToggle = useCallback(() => setIsNewItemModalOpen(!isNewItemModalOpen), [isNewItemModalOpen]);
+  const handleDictionaryItemModalToggle = useCallback(() => setIsDictionaryItemModalOpen(!isDictionaryItemModalOpen), [isDictionaryItemModalOpen]);
 
   return (
     <DictionaryProvider>
       <div className={classes.App}>
-        <Header handleModalToggle={handleNewItemModalToggle} />
+        <Header handleModalToggle={handleDictionaryItemModalToggle} />
         <List />
         {
-          isNewItemModalOpen ? <NewItemModal handleModalToggle={handleNewItemModalToggle} /> : null
+          isDictionaryItemModalOpen ? <DictionaryItemModal handleModalToggle={handleDictionaryItemModalToggle} /> : null
         }
       </div>
     </DictionaryProvider>

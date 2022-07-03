@@ -1,5 +1,7 @@
-import { DictionaryContext } from 'context/dictionary';
 import { ChangeEventHandler, useCallback, useContext, useState } from 'react';
+import { v4 as uuidv4 } from 'uuid';
+
+import { DictionaryContext } from 'context/dictionary';
 import useStyles from './styles';
 
 interface INewItemModal {
@@ -21,11 +23,13 @@ const NewItemModal = ({ handleModalToggle }: INewItemModal) => {
         dictionaryDispatch({
             type: 'ADD_ITEM',
             payload: {
+                id: uuidv4(),
                 title,
                 description,
             }
         })
-    }, [title, description, dictionaryDispatch]);
+        handleModalToggle();
+    }, [title, description, dictionaryDispatch, handleModalToggle]);
 
     return (
         <div onClick={handleModalToggle} className={classes.newItemModalWrapper}>
@@ -42,7 +46,7 @@ const NewItemModal = ({ handleModalToggle }: INewItemModal) => {
                         onChange={descriptionHandler}
                         placeholder="Description..."
                     />
-                    <button onClick={addItemHandler}>add item</button>
+                    <button disabled={!(title && description)} onClick={addItemHandler}>add item</button>
                 </div>
             </div>
         </div>
