@@ -15,7 +15,7 @@ const NewItemModal = ({ handleModalToggle }: INewItemModal) => {
     const { dictionaryDispatch } = useContext(DictionaryContext);
 
     const classes = useStyles();
-  
+
     const titleHandler: ChangeEventHandler<HTMLInputElement> = useCallback(e => setTitle(e.target.value), []);
     const descriptionHandler: ChangeEventHandler<HTMLTextAreaElement> = useCallback(e => setDescription(e.target.value), []);
 
@@ -39,12 +39,12 @@ const NewItemModal = ({ handleModalToggle }: INewItemModal) => {
                     <input
                         value={title}
                         onChange={titleHandler}
-                        placeholder="Title..."
+                        placeholder="Write title..."
                     />
                     <textarea
                         value={description}
                         onChange={descriptionHandler}
-                        placeholder="Description..."
+                        placeholder="Write description..."
                     />
                     <button disabled={!(title && description)} onClick={addItemHandler}>add item</button>
                 </div>
