@@ -1,8 +1,6 @@
 import { memo, useCallback, useContext } from "react";
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faTrashAlt, faEdit } from "@fortawesome/free-solid-svg-icons";
 
-import { IDictionaryItem } from "types";
+import { IDictionaryItem } from "context/types";
 import useStyles from "./styles";
 import { DictionaryContext } from "context/dictionary";
 
@@ -26,8 +24,8 @@ const ListItem = ({ item }: IListItem) => {
         <div className={classes.listItemContainer}>
             <span>{item.title} - {item.description}</span>
             <div className={classes.listItemActionsContainer}>
-            <FontAwesomeIcon icon={faEdit} size='lg' />
-            <FontAwesomeIcon icon={faTrashAlt} size='lg' onClick={handleDelete} />
+                <button>Edit</button>
+                <button onClick={handleDelete}>Delete</button>
             </div>
         </div>
     )

@@ -1,12 +1,12 @@
 import React, { useReducer, Reducer } from 'react';
 
-import { IDictionaryContextAction, IDictionaryProvider, IDictionaryContext, IDictionary } from 'types';
+import { IDictionaryProvider, IContext, IContextState, IDictionaryItem, IContextAction } from 'context/types';
 
-const initialState: IDictionary = {};
+const initialState: IContextState<IDictionaryItem> = {};
 
 // TODO: Refactor during the redux swith
-const reducer: Reducer<IDictionary, IDictionaryContextAction> = (state, action) => {
-    switch(action.type){
+const reducer: Reducer<IContextState<IDictionaryItem>, IContextAction<IDictionaryItem>> = (state, action) => {
+    switch (action.type) {
         case 'ADD_ITEM':
         case 'EDIT_ITEM':
             return { ...state, [action.payload.id]: action.payload };
@@ -18,11 +18,11 @@ const reducer: Reducer<IDictionary, IDictionaryContextAction> = (state, action) 
     }
 };
 
-export const DictionaryContext = React.createContext({} as IDictionaryContext);
+export const DictionaryContext = React.createContext({} as IContext<IDictionaryItem>);
 
 const DictionaryProvider = (props: IDictionaryProvider) => {
     const [dictionary, dictionaryDispatch] = useReducer(reducer, initialState);
-    
+
     return (
         <DictionaryContext.Provider value={{ dictionary, dictionaryDispatch }}>
             {props.children}
