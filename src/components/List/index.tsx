@@ -14,7 +14,7 @@ const List = () => {
         <div className={classes.listContainer}>
             {
                 Object.values(dictionary)
-                    .filter(item => search.searchItem.trim() ? item.title.startsWith(search.searchItem) : true)
+                    .filter(item => !search.searchItem.trim() || item.title.startsWith(search.searchItem))
                     .map((item, index) => (
                         <ListItem
                             item={item}
