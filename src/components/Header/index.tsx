@@ -1,4 +1,5 @@
-import { ChangeEventHandler, useCallback, useState } from 'react';
+import { SearchContext } from 'context/search';
+import { ChangeEventHandler, useCallback, useContext } from 'react';
 import useStyles from './styles';
 
 interface IHeader {
@@ -6,18 +7,22 @@ interface IHeader {
 }
 
 const Header = ({ handleModalToggle }: IHeader) => {
-  const [searchItem, setSearchItem] = useState('');
   const classes = useStyles();
 
+  const { search, searchDispatch } = useContext(SearchContext);
+
   const searchItemHandler: ChangeEventHandler<HTMLInputElement> = useCallback((e) => {
-    setSearchItem(e.target.value);
-  }, []);
+    searchDispatch({
+      type: 'UPDATE_SEARCH_ITEM',
+      payload: e.target.value,
+    });
+  }, [searchDispatch]);
 
   return (
     <div className={classes.headerContainer}>
       <div className={classes.inputsContainer}>
         <input
-          value={searchItem}
+          value={search.searchItem}
           onChange={searchItemHandler}
           placeholder="Search..."
         />
