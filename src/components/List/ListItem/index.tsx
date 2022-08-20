@@ -24,7 +24,6 @@ const ListItem = ({ item }: IListItem) => {
         <div className={classes.listItemContainer}>
             <span>{item.title} - {item.description}</span>
             <div className={classes.listItemActionsContainer}>
-                <button>Edit</button>
                 <button onClick={handleDelete}>Delete</button>
             </div>
         </div>
